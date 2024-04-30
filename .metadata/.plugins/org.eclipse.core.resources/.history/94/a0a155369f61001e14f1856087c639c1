@@ -1,0 +1,12 @@
+/*
+ * adc.c
+ *
+ *  Created on: Oct 3, 2023
+ *      Author: ipave
+ */
+
+
+#include<stdio.h>
+#include <stdbool.h>
+#include "arm_math.h"
+#include "adc.h"

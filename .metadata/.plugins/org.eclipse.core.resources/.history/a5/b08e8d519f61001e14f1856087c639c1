@@ -1,0 +1,15 @@
+/*
+ * adc.h
+ *
+ *  Created on: Oct 3, 2023
+ *      Author: ipave
+ */
+
+#ifndef INC_ADC_H_
+#define INC_ADC_H_
+
+void HAL_ADC_ConCpltCallback(ADC_HandleTypeDef* hadc);
+
+
+
+#endif /* INC_ADC_H_ */

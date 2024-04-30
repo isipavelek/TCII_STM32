@@ -1,0 +1,10 @@
+../Core/Src/hw_init.c:32:6:SystemClock_Config	3
+../Core/Src/hw_init.c:77:6:MX_NVIC_Init	1
+../Core/Src/hw_init.c:89:6:MX_ADC1_Init	3
+../Core/Src/hw_init.c:133:6:MX_DAC_Init	3
+../Core/Src/hw_init.c:166:6:MX_ETH_Init	2
+../Core/Src/hw_init.c:202:6:MX_TIM2_Init	4
+../Core/Src/hw_init.c:242:6:MX_USART3_UART_Init	2
+../Core/Src/hw_init.c:266:6:MX_USB_OTG_FS_PCD_Init	2
+../Core/Src/hw_init.c:292:6:MX_GPIO_Init	1
+../Core/Src/hw_init.c:340:6:Error_Handler	1

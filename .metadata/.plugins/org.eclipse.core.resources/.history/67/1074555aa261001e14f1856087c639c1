@@ -1,0 +1,65 @@
+/*
+ * adc.c
+ *
+ *  Created on: Oct 3, 2023
+ *      Author: ipave
+ */
+
+
+#include<stdio.h>
+#include <stdbool.h>
+#include "arm_math.h"
+#include "adc.h"
+
+extern ADC_HandleTypeDef hadc1;
+extern DAC_HandleTypeDef hdac;
+
+float float_InputA[SAMPLES_PER_BLOCK];
+float float_InputB[SAMPLES_PER_BLOCK];
+float float_OutputA[SAMPLES_PER_BLOCK];
+float float_OutputB[SAMPLES_PER_BLOCK];
+
+q31_t InputA[SAMPLES_PER_BLOCK];
+q31_t InputB[SAMPLES_PER_BLOCK];
+q31_t OutputA[SAMPLES_PER_BLOCK];
+q31_t OutputB[SAMPLES_PER_BLOCK];
+
+uint8_t estado = false;
+
+procesar_type_t procesar=NO_PROCESAR;
+
+void HAL_ADC_ConCpltCallback(ADC_HandleTypeDef* hadc){
+	static uint16_t index = 0;
+
+	uint16_t val;
+	//char msg[20];
+	val=HAL_ADC_GetValue(&hadc1);
+
+	if (estado==CARGANDO_A){
+				InputA[index] = val;
+				HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R, (uint32_t)OutputA[index]);
+		}
+		else {
+			InputB[index] =val ;
+			HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R, (uint32_t)OutputB[index]);
+
+
+		}
+
+		index++;
+
+		if (index == SAMPLES_PER_BLOCK) {
+			index = 0;
+			if(estado==CARGANDO_A)procesar=PROCESAR_A;
+			else procesar=PROCESAR_B;
+			estado ^= 1;
+		}
+
+	/*sprintf(msg,"Valor %hu\r\n",val);
+	//HAL_UART_Transmit(&huart3,(const uint8_t *)"HOLA\n\r", sizeof("HOLA\n\r"), HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart3,(const uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);*/
+
+
+
+
+}

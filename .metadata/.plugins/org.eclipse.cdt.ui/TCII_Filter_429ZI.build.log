@@ -1,0 +1,10 @@
+23:10:50 **** Incremental Build of configuration Debug for project TCII_Filter_429ZI ****
+make -j16 all 
+arm-none-eabi-size  TCII_Filter_429ZI.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22716	     20	  29100	  51836	   ca7c	TCII_Filter_429ZI.elf
+Finished building: default.size.stdout
+ 
+
+23:10:51 Build Finished. 0 errors, 0 warnings. (took 787ms)
+
